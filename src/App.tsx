@@ -11,7 +11,7 @@ const App = () => {
       ),
   })
 
-  const pictures = data?.results?.map((result: any) => result?.image);
+  const pictures = data?.results?.map((result: { image: string; }) => result?.image);
 
   if (isError) return <p className="flex justify-center text-lg mt-6">An error has occurred</p>;
 
