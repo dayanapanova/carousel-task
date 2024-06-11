@@ -1,6 +1,6 @@
 # Project Name
 
-React Carousel task
+React Carousel - Rick and Morty
 
 ## Installation
 
