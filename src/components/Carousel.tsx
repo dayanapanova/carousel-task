@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import clsx from "clsx";
 
 type Props = {
   pictures: string[];
@@ -6,7 +7,7 @@ type Props = {
   width?: string;
   pictureFit?: "cover" | "contain";
   customStyle?: string;
-}
+};
 
 const fitTransformer = {
   cover: "object-cover",
@@ -166,7 +167,16 @@ const Carousel = ({
     };
   }, [pictures]);
 
-  const picClass = `${width} ${height} ${fitTransformer[pictureFit]} snap-always snap-start bg-gray-200 shrink-0 ${customStyle}`;
+  const picClass = clsx(
+    width,
+    height,
+    fitTransformer[pictureFit],
+    "snap-always",
+    "snap-start",
+    "bg-gray-200",
+    "shrink-0",
+    customStyle
+  );
 
   return (
     <div
