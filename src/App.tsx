@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useQuery } from '@tanstack/react-query';
+import Carousel from "./components/Carousel";
 
-function App() {
+const App = () => {
+  const { data, isPending, isError } = useQuery({
+    queryKey: ['allImages'],
+    queryFn: () =>
+      fetch(`https://rickandmortyapi.com/api/character`).then((res) =>
+        res.json()
+      ),
+  })
+
+  const pictures = data?.results?.map((result: any) => result?.image);
+
+  if (isPending) return <p className="flex justify-center text-lg mt-6">Loading...</p>;
+
+  if (isError) return <p className="flex justify-center text-lg mt-6">An error has occurred</p>;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex justify-center items-center h-screen bg-alien-green">
+      <div className="w-[400px] h-[400px] border rounded-lg shadow-lg overflow-hidden flex justify-center items-center">
+        <Carousel pictures={pictures} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
+
