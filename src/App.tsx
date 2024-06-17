@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-alien-green">
-      <div className="w-[400px] h-[400px] border rounded-lg shadow-lg overflow-hidden flex justify-center items-center">
+      <div className="w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] border rounded-lg shadow-lg overflow-hidden flex justify-center items-center">
         {isLoading ? <Skeleton width="400px" height="400px" /> : <Carousel pictures={pictures} />}
       </div>
     </div>
